@@ -1,13 +1,14 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.4.4
-Release:	2
+Version:	3.6.0
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.4/gtk+-%{version}.tar.xz
-# Source0-md5:	1b2cf29502a6394e8d4b30f7f5bb9131
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.6/gtk+-%{version}.tar.xz
+# Source0-md5:	6f7ef4679f7e3622894c3f57045a1188
 URL:		http://www.gtk.org/
-BuildRequires:	atk-devel
+BuildRequires:	atk-devel >= 2.6.0
+BuildRequires:	at-spi2-atk-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel
@@ -17,10 +18,10 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gdk-pixbuf-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib-devel
+BuildRequires:	glib-devel >= 1:2.34.0
 # broken dep, --disable-schemas-compile ignored
 BuildRequires:	glib-gio-gsettings
-BuildRequires:	gobject-introspection-devel
+BuildRequires:	gobject-introspection-devel >= 1.34.0
 BuildRequires:	gtk-doc
 BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
@@ -29,7 +30,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
-BuildRequires:	pango-devel
+BuildRequires:	pango-devel >= 1:1.31.2
 BuildRequires:	perl-base
 BuildRequires:	pkg-config
 BuildRequires:	shared-mime-info
@@ -43,10 +44,10 @@ BuildRequires:	xorg-libXinerama-devel
 BuildRequires:	xorg-libXrandr-devel
 BuildRequires:	xorg-libXrender-devel
 Requires(post,postun):	glib-gio-gsettings
-Requires:	atk >= 1:2.4.0
+Requires:	atk >= 1:2.6.0
 Requires:	gdk-pixbuf >= 2.26.0
-Requires:	glib-gio >= 1:2.32.0
-Requires:	pango >= 1:1.30.0
+Requires:	glib-gio >= 1:2.34.0
+Requires:	pango >= 1:1.31.2
 Requires:	shared-mime-info
 Suggests:	colord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -123,7 +124,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/*/*/*.la
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{az_IR,ca@valencia,crh,io,kg,my,ps}
 
 # unpackaged
+rm -f $RPM_BUILD_ROOT%{_bindir}/gtk3-demo*
 rm -rf $RPM_BUILD_ROOT%{_datadir}/gtk-3.0/demo
+rm -f $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/org.gtk.Demo.gschema.xml
 
 %find_lang %{name} --all-name
 
@@ -134,22 +137,21 @@ rm -rf $RPM_BUILD_ROOT
 /usr/sbin/ldconfig
 %update_gsettings_cache
 umask 022
-%{_bindir}/gtk-query-immodules-3.0 --update-cache ||:
+gtk-query-immodules-3.0 --update-cache ||:
 
 %postun
 /usr/sbin/ldconfig
 if [ "$1" != "0" ]; then
     umask 022
-    %{_bindir}/gtk-query-immodules-3.0 --update-cache ||:
+    gtk-query-immodules-3.0 --update-cache ||:
 else
     %update_gsettings_cache
 fi
 
-/sbin/ldconfig
-
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README
+%attr(755,root,root) %{_bindir}/gtk-launch
 %attr(755,root,root) %{_bindir}/gtk-query-immodules-3.0
 %attr(755,root,root) %{_bindir}/gtk3-widget-factory
 
@@ -184,6 +186,7 @@ fi
 %{_datadir}/glib-2.0/schemas/org.gtk.Settings.FileChooser.gschema.xml
 %{_datadir}/themes/Default/gtk-3.0/gtk-keys.css
 %{_datadir}/themes/Emacs/gtk-3.0/gtk-keys.css
+%{_mandir}/man1/gtk-launch.1*
 %{_mandir}/man1/gtk-query-immodules-3.0.1*
 
 %files devel
@@ -194,6 +197,7 @@ fi
 %{_includedir}/gail-*
 %{_includedir}/gtk-*
 %{_aclocaldir}/*.m4
+%{_datadir}/gtk-3.0
 %{_pkgconfigdir}/*.pc
 %{_datadir}/gir-1.0/*.gir
 
