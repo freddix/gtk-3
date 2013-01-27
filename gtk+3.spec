@@ -1,11 +1,11 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.6.2
+Version:	3.6.4
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.6/gtk+-%{version}.tar.xz
-# Source0-md5:	1ed8273dba08ba4a014758bd0bb12a88
+# Source0-md5:	123d3dc6fc659539a308017934235b3e
 URL:		http://www.gtk.org/
 BuildRequires:	atk-devel >= 2.6.0
 BuildRequires:	at-spi2-atk-devel
