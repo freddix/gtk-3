@@ -1,13 +1,13 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.6.4
-Release:	1
+Version:	3.8.0
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.6/gtk+-%{version}.tar.xz
-# Source0-md5:	123d3dc6fc659539a308017934235b3e
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.8/gtk+-%{version}.tar.xz
+# Source0-md5:	ee8042469449c2bc702dbd9fa690f405
 URL:		http://www.gtk.org/
-BuildRequires:	atk-devel >= 2.6.0
+BuildRequires:	atk-devel >= 1:2.7.91
 BuildRequires:	at-spi2-atk-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -16,12 +16,12 @@ BuildRequires:  colord-devel
 BuildRequires:	cups-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	gdk-pixbuf-devel >= 2.28.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib-devel >= 1:2.34.0
+BuildRequires:	glib-devel >= 1:2.36.0
 # broken dep, --disable-schemas-compile ignored
 BuildRequires:	glib-gio-gsettings
-BuildRequires:	gobject-introspection-devel >= 1.34.0
+BuildRequires:	gobject-introspection-devel >= 1.36.0
 BuildRequires:	gtk-doc
 BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
@@ -44,9 +44,9 @@ BuildRequires:	xorg-libXinerama-devel
 BuildRequires:	xorg-libXrandr-devel
 BuildRequires:	xorg-libXrender-devel
 Requires(post,postun):	glib-gio-gsettings
-Requires:	atk >= 1:2.6.0
-Requires:	gdk-pixbuf >= 2.26.0
-Requires:	glib-gio >= 1:2.34.0
+Requires:	atk >= 1:2.7.91
+Requires:	gdk-pixbuf >= 2.28.0
+Requires:	glib-gio >= 1:2.36.0
 Requires:	pango >= 1:1.31.2
 Requires:	shared-mime-info
 Suggests:	colord
