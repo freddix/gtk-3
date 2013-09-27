@@ -1,27 +1,27 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.8.4
+Version:	3.10.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.8/gtk+-%{version}.tar.xz
-# Source0-md5:	2b232d76c01ceb626948bcbe70b05269
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.10/gtk+-%{version}.tar.xz
+# Source0-md5:	f5148a330886b906ba0eb7842409d93f
 URL:		http://www.gtk.org/
-BuildRequires:	atk-devel >= 1:2.7.91
-BuildRequires:	at-spi2-atk-devel
+BuildRequires:	atk-devel >= 1:2.10.0
+BuildRequires:	at-spi2-atk-devel >= 2.10.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel
+BuildRequires:	cairo-devel >= 1.12.0
 BuildRequires:  colord-devel
 BuildRequires:	cups-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	gdk-pixbuf-devel >= 2.28.0
+BuildRequires:	gdk-pixbuf-devel >= 2.30.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib-devel >= 1:2.36.0
+BuildRequires:	glib-devel >= 1:2.38.0
 # broken dep, --disable-schemas-compile ignored
 BuildRequires:	glib-gio-gsettings
-BuildRequires:	gobject-introspection-devel >= 1.36.0
+BuildRequires:	gobject-introspection-devel >= 1.38.0
 BuildRequires:	gtk-doc
 BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
@@ -30,7 +30,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
-BuildRequires:	pango-devel >= 1:1.31.2
+BuildRequires:	pango-devel >= 1:1.36.0
 BuildRequires:	perl-base
 BuildRequires:	pkg-config
 BuildRequires:	shared-mime-info
@@ -44,10 +44,10 @@ BuildRequires:	xorg-libXinerama-devel
 BuildRequires:	xorg-libXrandr-devel
 BuildRequires:	xorg-libXrender-devel
 Requires(post,postun):	glib-gio-gsettings
-Requires:	atk >= 1:2.7.91
-Requires:	gdk-pixbuf >= 2.28.0
-Requires:	glib-gio >= 1:2.36.0
-Requires:	pango >= 1:1.31.2
+Requires:	atk >= 1:2.10.0
+Requires:	gdk-pixbuf >= 2.30.0
+Requires:	glib-gio >= 1:2.38.0
+Requires:	pango >= 1:1.36.0
 Requires:	shared-mime-info
 Suggests:	colord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -118,15 +118,14 @@ install -d $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/{modules,%{abivers}/{engines,themin
 touch $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/%{abivers}/gtk.immodules
 
 # shut up check-files (static modules and *.la for modules)
-rm -rf $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/*/*/*.la
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/*/*/*.la
 
 # remove unsupported locale scheme
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{az_IR,ca@valencia,crh,io,kg,my,ps}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{az_IR,ca@valencia,crh,io,kg,my,ps}
 
 # unpackaged
-rm -f $RPM_BUILD_ROOT%{_bindir}/gtk3-demo*
-rm -rf $RPM_BUILD_ROOT%{_datadir}/gtk-3.0/demo
-rm -f $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/org.gtk.Demo.gschema.xml
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/gtk3-demo*
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/org.gtk.{Demo,exampleapp}.gschema.xml
 
 %find_lang %{name} --all-name
 
@@ -193,7 +192,6 @@ fi
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_includedir}/gail-*
 %{_includedir}/gtk-*
 %{_aclocaldir}/*.m4
