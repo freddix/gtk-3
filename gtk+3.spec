@@ -1,14 +1,14 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.10.7
+Version:	3.12.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.10/gtk+-%{version}.tar.xz
-# Source0-md5:	18a81944a8506231529a76bf2b68372b
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.12/gtk+-%{version}.tar.xz
+# Source0-md5:	4e493fb68cded7420a7d8bcebdf13811
 URL:		http://www.gtk.org/
-BuildRequires:	atk-devel >= 1:2.10.0
-BuildRequires:	at-spi2-atk-devel >= 2.10.0
+BuildRequires:	atk-devel >= 1:2.12.0
+BuildRequires:	at-spi2-atk-devel >= 2.12.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.12.0
@@ -18,10 +18,10 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gdk-pixbuf-devel >= 2.30.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib-devel >= 1:2.38.0
+BuildRequires:	glib-devel >= 1:2.40.0
 # broken dep, --disable-schemas-compile ignored
 BuildRequires:	glib-gio-gsettings
-BuildRequires:	gobject-introspection-devel >= 1.38.0
+BuildRequires:	gobject-introspection-devel >= 1.40.0
 BuildRequires:	gtk-doc
 BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
@@ -44,9 +44,9 @@ BuildRequires:	xorg-libXinerama-devel
 BuildRequires:	xorg-libXrandr-devel
 BuildRequires:	xorg-libXrender-devel
 Requires(post,postun):	glib-gio-gsettings
-Requires:	atk >= 1:2.10.0
+Requires:	atk >= 1:2.12.0
 Requires:	gdk-pixbuf >= 2.30.0
-Requires:	glib-gio >= 1:2.38.0
+Requires:	glib-gio >= 1:2.40.0
 Requires:	pango >= 1:1.36.0
 Requires:	shared-mime-info
 Suggests:	colord
@@ -119,6 +119,7 @@ touch $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/%{abivers}/gtk.immodules
 
 # shut up check-files (static modules and *.la for modules)
 %{__rm} -r $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/*/*/*.la
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/*.la
 
 # remove unsupported locale scheme
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{az_IR,ca@valencia,crh,io,kg,my,ps}
@@ -126,6 +127,8 @@ touch $RPM_BUILD_ROOT%{_libdir}/gtk-3.0/%{abivers}/gtk.immodules
 # unpackaged
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/gtk3-demo*
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/org.gtk.{Demo,exampleapp}.gschema.xml
+%{__rm} $RPM_BUILD_ROOT%{_desktopdir}/*.desktop
+%{__rm} -r $RPM_BUILD_ROOT%{_iconsdir}
 
 %find_lang %{name} --all-name
 
