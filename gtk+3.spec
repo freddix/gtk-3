@@ -1,14 +1,14 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.12.1
+Version:	3.14.1
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.12/gtk+-%{version}.tar.xz
-# Source0-md5:	d4fa17f3916bdd737c37cdf123c1b24a
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.14/gtk+-%{version}.tar.xz
+# Source0-md5:	92485df8cec035c394b145590f56363f
 URL:		http://www.gtk.org/
-BuildRequires:	atk-devel >= 1:2.12.0
-BuildRequires:	at-spi2-atk-devel >= 2.12.0
+BuildRequires:	atk-devel >= 1:2.14.0
+BuildRequires:	at-spi2-atk-devel >= 2.14.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.12.0
@@ -18,10 +18,10 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gdk-pixbuf-devel >= 2.30.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib-devel >= 1:2.40.0
+BuildRequires:	glib-devel >= 1:2.42.0
 # broken dep, --disable-schemas-compile ignored
 BuildRequires:	glib-gio-gsettings
-BuildRequires:	gobject-introspection-devel >= 1.40.0
+BuildRequires:	gobject-introspection-devel >= 1.42.0
 BuildRequires:	gtk-doc
 BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
@@ -30,7 +30,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
-BuildRequires:	pango-devel >= 1:1.36.0
+BuildRequires:	pango-devel >= 1:1.36.7
 BuildRequires:	perl-base
 BuildRequires:	pkg-config
 BuildRequires:	shared-mime-info
@@ -44,10 +44,10 @@ BuildRequires:	xorg-libXinerama-devel
 BuildRequires:	xorg-libXrandr-devel
 BuildRequires:	xorg-libXrender-devel
 Requires(post,postun):	glib-gio-gsettings
-Requires:	atk >= 1:2.12.0
+Requires:	atk >= 1:2.14.0
 Requires:	gdk-pixbuf >= 2.30.0
-Requires:	glib-gio >= 1:2.40.0
-Requires:	pango >= 1:1.36.0
+Requires:	glib-gio >= 1:2.42.0
+Requires:	pango >= 1:1.36.7
 Requires:	shared-mime-info
 Suggests:	colord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -154,8 +154,10 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/gtk-launch
+%attr(755,root,root) %{_bindir}/gtk-encode-symbolic-svg
 %attr(755,root,root) %{_bindir}/gtk-query-immodules-3.0
 %attr(755,root,root) %{_bindir}/gtk3-widget-factory
+%attr(755,root,root) %{_bindir}/gtk3-icon-browser
 
 %dir %{_libdir}/gtk-3.0
 %attr(755,root,root) %ghost %{_libdir}/libgailutil-3.so.?
@@ -185,11 +187,15 @@ fi
 %dir %{_datadir}/themes/Emacs/gtk-3.0
 %dir %{_sysconfdir}/gtk-3.0
 %{_datadir}/glib-2.0/schemas/org.gtk.Settings.ColorChooser.gschema.xml
+%{_datadir}/glib-2.0/schemas/org.gtk.Settings.Debug.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gtk.Settings.FileChooser.gschema.xml
 %{_datadir}/themes/Default/gtk-3.0/gtk-keys.css
 %{_datadir}/themes/Emacs/gtk-3.0/gtk-keys.css
+%{_mandir}/man1/gtk-encode-symbolic-svg.1*
 %{_mandir}/man1/gtk-launch.1*
 %{_mandir}/man1/gtk-query-immodules-3.0.1*
+%{_mandir}/man1/gtk3-icon-browser.1*
+%{_mandir}/man1/gtk3-widget-factory.1*
 
 %files devel
 %defattr(644,root,root,755)
