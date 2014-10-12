@@ -1,11 +1,11 @@
 Summary:	The Gimp Toolkit
 Name:		gtk+3
-Version:	3.14.1
+Version:	3.14.2
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gtk+/3.14/gtk+-%{version}.tar.xz
-# Source0-md5:	92485df8cec035c394b145590f56363f
+# Source0-md5:	49fba3678fc62ce404f89e21658e45c0
 URL:		http://www.gtk.org/
 BuildRequires:	atk-devel >= 1:2.14.0
 BuildRequires:	at-spi2-atk-devel >= 2.14.0
